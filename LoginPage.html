@@ -6,3 +6,33 @@
 <body>
 <h1>Login</h1>
 </body>
+
+<html lang="en">
+  <head>
+	<link rel="stylesheet" type="text/css" href="LoginPage.css">
+  </head>
+  <body>
+  
+	<h1 id="databae"></h1>
+    
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyBYCYQwb8SRQx-R1QFHFtGb4z1ovd3JjMo",
+		authDomain: "ontutor-18e67.firebaseapp.com",
+		databaseURL: "https://ontutor-18e67.firebaseio.com",
+		projectId: "ontutor-18e67",
+		storageBucket: "",
+		messagingSenderId: "61927939127"
+	  };
+	  firebase.initializeApp(config);
+	  
+	var databae = document.getElementById('databae');
+	var dbRef = firebase.database().ref().child('text');
+	dbRef.on('value', snap=> databae.innerText = snap.val());
+	</script>
+	
+	
+  </body>
+</html>
