@@ -47,7 +47,7 @@
 		  // ...
 		  console.log(user);
 		  console.log(user["displayName"]);
-		  document.getElementById('LoginStatus').innerText = "Login Succeed"
+		  document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
 		}).catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
@@ -64,6 +64,7 @@
 	{
 		firebase.auth().signOut().then(function() {
 		  // Sign-out successful.
+		console.log(user["displayName"]);
 		document.getElementById('LoginStatus').innerText = "Logout Succeed"
 		}).catch(function(error) {
 		  // An error happened.
