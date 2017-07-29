@@ -2,7 +2,7 @@ body {
     background-image: url("https://github.com/hptanapp/GoogleLogin/blob/master/images/background.jpg");
 }
 
-a {
+.button {
 	background-color: #4CAF50; /* Green */
     border: none;
     color: white;
