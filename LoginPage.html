@@ -64,8 +64,8 @@
 	{
 		firebase.auth().signOut().then(function() {
 		  // Sign-out successful.
-		console.log(user["displayName"]);
 		document.getElementById('LoginStatus').innerText = "Logout Succeed"
+		console.log(user["displayName"]);
 		}).catch(function(error) {
 		  // An error happened.
 		});
