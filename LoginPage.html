@@ -40,7 +40,26 @@
 		console.log("In SignIn");
 		var user = firebase.auth().currentUser;
 		if (user) {
-			console.log("In SignIn - user already signed in.");
+			console.log("In SignOut");
+			var user = firebase.auth().currentUser;
+			if (user) {
+				// User is signed in.
+				console.log("In SignOut - User is signed in.");
+				firebase.auth().signOut().then(function() {
+				// Sign-out successful.
+				document.getElementById('LoginStatus').innerText = "Logout Succeed"
+				console.log(user);
+				console.log("In SignOut - displayName = " + user["displayName"]);
+				console.log("In SignOut - emailVerified = " + user["emailVerified"]);
+				console.log("In SignOut - uid = " + user["uid"]);
+				document.getElementById("clickme1").value= "Login";
+				}).catch(function(error) {
+				  // An error happened.
+				});
+			} else {
+				// No user is signed in.
+				console.log("In SignOut - No user is signed in.");
+			}
 		}
 		else {
 			console.log("In SignIn - signing in.");
@@ -56,6 +75,7 @@
 				console.log("In SignIn - emailVerified = " + user["emailVerified"]);
 				console.log("In SignIn - uid = " + user["uid"]);		  
 				document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
+				document.getElementById("clickme1").value= "Log Out";
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
@@ -80,9 +100,10 @@
 			// Sign-out successful.
 			document.getElementById('LoginStatus').innerText = "Logout Succeed"
 			console.log(user);
-			console.log("displayName = " + user["displayName"]);
-			console.log("emailVerified = " + user["emailVerified"]);
-			console.log("uid = " + user["uid"]);
+			console.log("In SignOut - displayName = " + user["displayName"]);
+			console.log("In SignOut - emailVerified = " + user["emailVerified"]);
+			console.log("In SignOut - uid = " + user["uid"]);
+			document.getElementById("clickme1").value= "Login";
 			}).catch(function(error) {
 			  // An error happened.
 			});
