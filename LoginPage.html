@@ -46,7 +46,9 @@
 		  var user = result.user;
 		  // ...
 		  console.log(user);
-		  console.log(user["displayName"]);
+		  console.log("displayName = " + user["displayName"]);
+		  console.log("emailVerified = " + user["emailVerified"]);
+		  console.log("uid = " + user["uid"]);		  
 		  document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
 		}).catch(function(error) {
 		  // Handle Errors here.
@@ -62,6 +64,7 @@
 	
 	function SignOut()
 	{
+		console.log("In SignOut");
 		firebase.auth().signOut().then(function() {
 		  // Sign-out successful.
 		document.getElementById('LoginStatus').innerText = "Logout Succeed"
