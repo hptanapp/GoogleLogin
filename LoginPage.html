@@ -52,7 +52,7 @@
 				console.log("In SignIn - SignOut - displayName = " + user["displayName"]);
 				console.log("In SignIn - SignOut - emailVerified = " + user["emailVerified"]);
 				console.log("In SignIn - SignOut - uid = " + user["uid"]);
-				document.getElementById("clickme1").value= "Login";
+				document.getElementById("clickme1").innerText = "Login";
 				}).catch(function(error) {
 				  // An error happened.
 				});
@@ -75,7 +75,7 @@
 				console.log("In SignIn - emailVerified = " + user["emailVerified"]);
 				console.log("In SignIn - uid = " + user["uid"]);		  
 				document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
-				document.getElementById("clickme1").value= "Log Out";
+				document.getElementById("clickme1").innerText = "Log Out";
 			}).catch(function(error) {
 			  // Handle Errors here.
 			  var errorCode = error.code;
