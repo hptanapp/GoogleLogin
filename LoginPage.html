@@ -40,16 +40,23 @@
 		console.log("In SignIn");
 		var provider = new firebase.auth.GoogleAuthProvider();
 		firebase.auth().signInWithPopup(provider).then(function(result) {
-		  // This gives you a Google Access Token. You can use it to access the Google API.
-		  var token = result.credential.accessToken;
-		  // The signed-in user info.
-		  var user = result.user;
-		  // ...
-		  console.log(user);
-		  console.log("displayName = " + user["displayName"]);
-		  console.log("emailVerified = " + user["emailVerified"]);
-		  console.log("uid = " + user["uid"]);		  
-		  document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
+			// This gives you a Google Access Token. You can use it to access the Google API.
+			var token = result.credential.accessToken;
+			// The signed-in user info.
+			var user = result.user;
+			// ...
+			var user = firebase.auth().currentUser;
+
+			if (user) {
+				// User is signed in.
+				console.log(user);
+				console.log("displayName = " + user["displayName"]);
+				console.log("emailVerified = " + user["emailVerified"]);
+				console.log("uid = " + user["uid"]);		  
+				document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
+			} else {
+			  // No user is signed in.
+			}
 		}).catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
@@ -65,16 +72,24 @@
 	function SignOut()
 	{
 		console.log("In SignOut");
-		firebase.auth().signOut().then(function() {
-		  // Sign-out successful.
-		document.getElementById('LoginStatus').innerText = "Logout Succeed"
-		console.log(user);
-		console.log("displayName = " + user["displayName"]);
-		console.log("emailVerified = " + user["emailVerified"]);
-		console.log("uid = " + user["uid"]);
-		}).catch(function(error) {
-		  // An error happened.
-		});
+		var user = firebase.auth().currentUser;
+		if (user) {
+			// User is signed in.
+			console.log("In SignOut - User is signed in.");
+			firebase.auth().signOut().then(function() {
+			// Sign-out successful.
+			document.getElementById('LoginStatus').innerText = "Logout Succeed"
+			console.log(user);
+			console.log("displayName = " + user["displayName"]);
+			console.log("emailVerified = " + user["emailVerified"]);
+			console.log("uid = " + user["uid"]);
+			}).catch(function(error) {
+			  // An error happened.
+			});
+		} else {
+			// No user is signed in.
+			console.log("In SignOut - No user is signed in.");
+		}
 	}
 	</script>
 	
