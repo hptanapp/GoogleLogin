@@ -18,107 +18,10 @@
 	<h1 id="CurrentUser"></h1>
     
 	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-		apiKey: "AIzaSyBYCYQwb8SRQx-R1QFHFtGb4z1ovd3JjMo",
-		authDomain: "ontutor-18e67.firebaseapp.com",
-		databaseURL: "https://ontutor-18e67.firebaseio.com",
-		projectId: "ontutor-18e67",
-		storageBucket: "",
-		messagingSenderId: "61927939127"
-	  };
-	  firebase.initializeApp(config);
-	  
-	var databae = document.getElementById('databae');
-	var dbRef = firebase.database().ref().child('text');
-	dbRef.on('value', snap=> databae.innerText = snap.val());
-	
-	
-	function SignIn()
-	{
-		console.log("In SignIn");
-		var user = firebase.auth().currentUser;
-		if (user) {
-			console.log("In SignIn - SignOut");
-			var user = firebase.auth().currentUser;
-			if (user) {
-				// User is signed in.
-				console.log("In SignIn - SignOut - User is signed in.");
-				firebase.auth().signOut().then(function() {
-				// Sign-out successful.
-				document.getElementById('LoginStatus').innerText = "Logout Succeed"
-				console.log(user);
-				console.log("In SignIn - SignOut - displayName = " + user["displayName"]);
-				console.log("In SignIn - SignOut - emailVerified = " + user["emailVerified"]);
-				console.log("In SignIn - SignOut - uid = " + user["uid"]);
-				document.getElementById("clickme1").innerText = "Login";
-				}).catch(function(error) {
-				  // An error happened.
-				});
-			} else {
-				// No user is signed in.
-				console.log("In SignOut - No user is signed in.");
-			}
-		}
-		else {
-			console.log("In SignIn - signing in.");
-			var provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().signInWithPopup(provider).then(function(result) {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				var token = result.credential.accessToken;
-				// The signed-in user info.
-				var user = result.user;
-				// User is signed in.
-				console.log(user);
-				console.log("In SignIn - isplayName = " + user["displayName"]);
-				console.log("In SignIn - emailVerified = " + user["emailVerified"]);
-				console.log("In SignIn - uid = " + user["uid"]);		  
-				document.getElementById('LoginStatus').innerText = "Welcome "+ user["displayName"];
-				document.getElementById("clickme1").innerText = "Log Out";
-			}).catch(function(error) {
-			  // Handle Errors here.
-			  var errorCode = error.code;
-			  var errorMessage = error.message;
-			  // The email of the user's account used.
-			  var email = error.email;
-			  // The firebase.auth.AuthCredential type that was used.
-			  var credential = error.credential;
-			  // ...
-			});
-		}
-	}
-	
-	function SignOut()
-	{
-		console.log("In SignOut");
-		var user = firebase.auth().currentUser;
-		if (user) {
-			// User is signed in.
-			console.log("In SignOut - User is signed in.");
-			firebase.auth().signOut().then(function() {
-			// Sign-out successful.
-			document.getElementById('LoginStatus').innerText = "Logout Succeed"
-			console.log(user);
-			console.log("In SignOut - displayName = " + user["displayName"]);
-			console.log("In SignOut - emailVerified = " + user["emailVerified"]);
-			console.log("In SignOut - uid = " + user["uid"]);
-			document.getElementById("clickme1").value= "Login";
-			}).catch(function(error) {
-			  // An error happened.
-			});
-		} else {
-			// No user is signed in.
-			console.log("In SignOut - No user is signed in.");
-		}
-	}
-	</script>
+	<script src="LoginPage.js"></script>
 	
 	<br>
 	<button name="button1" id="clickme1" onclick="SignIn();">Sign In</button>
-	<br>
-	<br>
-	<button name="button2" id="clickme2" onclick="SignOut();">Sign Out</button>
 	<br>
 	
   </body>
