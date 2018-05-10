@@ -1,19 +1,19 @@
+//<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 // Initialize Firebase
 var config = {
 	apiKey: "AIzaSyBYCYQwb8SRQx-R1QFHFtGb4z1ovd3JjMo",
 	authDomain: "ontutor-18e67.firebaseapp.com",
 	databaseURL: "https://ontutor-18e67.firebaseio.com",
 	projectId: "ontutor-18e67",
-	storageBucket: "",
+	storageBucket: "ontutor-18e67.appspot.com",
 	messagingSenderId: "61927939127"
 };
 firebase.initializeApp(config);
   
-var databae = document.getElementById('databae');
-var dbRef = firebase.database().ref().child('text');
-dbRef.on('value', snap=> databae.innerText = snap.val());
+// var databae = document.getElementById('databae');
+// var dbRef = firebase.database().ref().child('text');
+// dbRef.on('value', snap=> databae.innerText = snap.val());
 
 
 function SignIn()
@@ -68,4 +68,26 @@ function SignIn()
 		  // ...
 		});
 	}
+}
+
+function Login2(){
+	 console.log("In Login2 - signing in.");
+	 var provider = new firebase.auth.GoogleAuthProvider();
+
+	 firebase.auth().signInWithPopup(provider).then(function(result) {
+	  // This gives you a Google Access Token. You can use it to access the Google API.
+	  var token = result.credential.accessToken;
+	  // The signed-in user info.
+	  var user = result.user;
+	  // ...
+	}).catch(function(error) {
+	  // Handle Errors here.
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  // The email of the user's account used.
+	  var email = error.email;
+	  // The firebase.auth.AuthCredential type that was used.
+	  var credential = error.credential;
+	  // ...
+});
 }
